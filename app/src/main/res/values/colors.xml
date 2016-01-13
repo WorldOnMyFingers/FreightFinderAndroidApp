@@ -6,4 +6,7 @@
     <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
     <color name="colorAccent">#c8e8ff</color>
+    <color name="colorTransparent">#00000000</color>
+    <color name="toolbarColour">#c1ff1a</color>
+
 </resources>

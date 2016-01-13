@@ -6,7 +6,7 @@
     <string name="fragment_feed">Feed</string>
     <string name="fragment_new_picko">New Picko</string>
     <string name="fragment_settings">Settings</string>
-    <string name="question">Type a Question... (Max 160 characters Please)</string>
+    <string name="question">Type a Question...</string>
 
 
 </resources>

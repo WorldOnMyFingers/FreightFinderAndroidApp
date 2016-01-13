@@ -4,6 +4,6 @@
     android:layout_height="wrap_content"
     android:id="@+id/tab"
     android:textColor="@color/navigationBarColor"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:textSize="@dimen/tab_label"
     android:fontFamily="@string/font_fontFamily_medium"/>

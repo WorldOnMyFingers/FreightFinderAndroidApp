@@ -10,7 +10,7 @@
 
     <!-- CardView -->
     <dimen name="inside_card_item_margin">10dp</dimen>
-    <dimen name="inside_card_linearlayout_margin_top">110dp</dimen>
+    <dimen name="inside_card_linearlayout_margin_top">1dp</dimen>
     <dimen name="mdl_cardview_button_size">14sp</dimen>
     <dimen name="cardview_margin_horizontal">16dp</dimen>
 
