@@ -1,12 +1,13 @@
 package com.example.emrebabayigit.pickoapp.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by ebabayigit on 20/04/2017.
  */
 
-public class Address {
+public class AddressViewModel implements Serializable {
 
     public long Id ;
 
@@ -14,14 +15,63 @@ public class Address {
 
     public String AddressLine;
 
-    public Date DateCreated;
+    public String City;
 
-    public boolean IsActive;
+    public String Country;
 
-    public City City;
+    public String County;
 
-    public Country Country;
+    // Setters and Getters
+    public void SetDistrict(String district)
+    {
+        District = district;
+    }
 
-    public County County;
+    public String GetDistrict()
+    {
+        return District;
+    }
+
+    public void SetAddressLine(String addressLine)
+    {
+        AddressLine = addressLine;
+    }
+
+    public String GetAddressLine()
+    {
+        return AddressLine;
+    }
+
+    public void SetCountry(String country)
+    {
+        Country = country;
+    }
+
+    public String GetCountry()
+    {
+        return Country;
+    }
+
+    public void SetCity(String city)
+    {
+        City = city;
+    }
+
+    public String GetCity()
+    {
+        return City;
+    }
+
+    public void SetCounty(String county)
+    {
+        County = county;
+    }
+
+    public String GetCounty()
+    {
+        return County;
+    }
+
+
 
 }

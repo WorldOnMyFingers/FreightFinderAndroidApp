@@ -1,13 +1,14 @@
 package com.example.emrebabayigit.pickoapp.models;
 
-import com.example.emrebabayigit.pickoapp.enums.VehicleTypeCodes;
+import com.example.emrebabayigit.pickoapp.enums.TrailerTypeCode;
 
+import java.io.Serializable;
 import java.util.Date;
 /**
  * Created by ebabayigit on 20/04/2017.
  */
 
-public class Vehicle {
+public class VehicleViewModel implements Serializable {
 
     public int Id;
 
@@ -15,7 +16,7 @@ public class Vehicle {
 
     public String PlateNumber;
 
-    public VehicleTypeCodes VehicleType;
+    public TrailerTypeCode VehicleType;
 
     public String VehicleIdentificationNumber;
 
@@ -29,13 +30,87 @@ public class Vehicle {
 
     public boolean IsActive;
 
-    public Colour Colour;
+    public String Colour;
 
-    public VehicleBrand Brand;
+    public String Brand;
 
-    public VehicleModel Model;
+    public String Model;
 
-    public Company Company;
+    public String Company;
 
-    public User Driver;
+    public String Driver;
+
+
+    // Setters and Getters
+    public void SetBrand(String brand)
+    {
+        Brand = brand;
+    }
+
+    public String GetBrand()
+    {
+        return Brand;
+    }
+
+    public void SetModel(String model)
+    {
+        Model = model;
+    }
+
+    public String GetModel()
+    {
+        return Model;
+    }
+
+    public void SetPlateNumber(String plateNumber)
+    {
+        PlateNumber = plateNumber;
+    }
+
+    public String GetPlateNumber()
+    {
+        return PlateNumber;
+    }
+
+    public void SetCapacity(int capacity)
+    {
+        Capacity = capacity;
+    }
+
+    public int GetCapacity()
+    {
+        return Capacity;
+    }
+
+    public void SetEngineNumber(String engineNumber)
+    {
+        EngineNumber = engineNumber;
+    }
+
+    public String GetEngineNumber()
+    {
+        return EngineNumber;
+    }
+
+public void SetColour(String colour)
+    {
+        Colour = colour;
+    }
+
+    public String GetColour()
+    {
+        return Colour;
+    }
+
+public void SetIsLoaded(boolean isLoaded)
+    {
+        IsLoaded = isLoaded;
+    }
+
+    public boolean GetIsLoaded()
+    {
+        return IsLoaded;
+    }
+
+
 }

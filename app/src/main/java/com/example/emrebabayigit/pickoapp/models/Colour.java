@@ -1,4 +1,4 @@
-package model;
+package com.example.emrebabayigit.pickoapp.models;
 
 /**
  * Created by ebabayigit on 20/04/2017.

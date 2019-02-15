@@ -1,120 +1,128 @@
-package opensource.itspr.recycler.Parcers;
+package com.example.emrebabayigit.pickoapp.Parcers;
+
+import com.example.emrebabayigit.pickoapp.Util.Utility;
+import com.example.emrebabayigit.pickoapp.enums.FreightTypeCode;
+import com.example.emrebabayigit.pickoapp.models.AddressViewModel;
+import com.example.emrebabayigit.pickoapp.models.FreightViewModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
-import opensource.itspr.recycler.Constants.GlobalConstants;
-import opensource.itspr.recycler.Util.Utility;
-import opensource.itspr.recycler.pojo.Movies;
 
 /**
  * Created by Prashanth Reddy (facebook.com/pr.amrita) (github.com/itspr)  on 1/4/2016.
  */
-public class NewsParcer {
-  private static final String TAG_RESULTS = "results";
-  private static final String TAG_TITLE = "title";
-  private static final String TAG_ID = "id";
-  private static final String TAG_DATE = "date";
-  private static final String TAG_SOURCE = "SOURCE";
-  private static final String TAG_AUTHOR = "author";
-  private static final String TAG_PERMALINK = "permalink";
-  private static final String TAG_FEATURED_IMG = "featured_img";
-  private static final String TAG_VIEW_TYPE = "VIEW_TYPE";
+public class FreightParcer {
+  private static final String TAG_FREIGHTS = "Freights";
+  private static final String TAG_ID = "Id";
+  private static final String TAG_FREIGHTTYPE = "FreightType";
+  private static final String TAG_WEIGHT = "Weight";
+  private static final String TAG_ISFULLVEHICLEQUANTITY = "IsFullVehicleQuantity";
+  private static final String TAG_LOADINGDATE = "LoadingDate";
+  private static final String TAG_DATETAKEN = "DateTaken";
+  private static final String TAG_DATECREATED = "DateCreated";
+  private static final String TAG_DELIVERYBYDATE = "DeliverByDate";
+  private static final String TAG_UNITPRICE = "UnitPrice";
+  private static final String TAG_TOTALPRICE = "TotalPrice";
+  private static final String TAG_ISVATINCLUDED = "IsVatIncluded";
+  private static final String TAG_ISDELIVERED = "IsDelivered";
+  private static final String TAG_ISACTIVE = "IsActive";
+  private static final String TAG_DESCRIPTION = "Description";
+  private static final String TAG_ISTAKEN = "IsTaken";
+
+  private static final String TAG_ADDRESS = "Address";
+  private static final String TAG_DESTINATIONADDRESS = "DestinationAddress";
+  private static final String TAG_LOCATION = "Location";
+
+  private static SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+  private static SimpleDateFormat formatterr = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SS");
 
 
-  public static ArrayList<Movies> parse(String jsonData) {
+  public static FreightViewModel parse(String jsonData) {
 
-    ArrayList<Movies> MovieList = new ArrayList<>();
+    FreightViewModel freight = new FreightViewModel();
 
     if(jsonData==null)
-      return MovieList;
+      return freight;
 
     try {
-      JSONArray storyArray = new JSONObject(jsonData).getJSONArray(TAG_RESULTS);
-      int length = storyArray.length();
+      JSONObject freightObject = new JSONObject(jsonData);
 
-      for(int i=0; i<length; i++)
-
-      {
-
-
-        String movie_title = GlobalConstants.NA;
-        String movie_id = GlobalConstants.NA;
-        String VIEW_TYPE = GlobalConstants.NA;
-        String release_date = GlobalConstants.NA;
-        String movie_source = GlobalConstants.NA;
-        String permalink = GlobalConstants.NA;
-        String featured_img = GlobalConstants.NA;
-        String movie_director = GlobalConstants.NA;
-
-
-        Movies movie = new Movies();
-        JSONObject storyObject = storyArray.getJSONObject(i);
-
-
-        if (Utility.contains(storyObject, TAG_TITLE)) {
-          movie_title = storyObject.getString(TAG_TITLE);
+        if (Utility.contains(freightObject, TAG_ID)) {
+          freight.SetId(Long.parseLong(freightObject.getString(TAG_ID)));
         }
 
-        if (Utility.contains(storyObject, TAG_ID)) {
-          movie_id = storyObject.getString(TAG_ID);
+        if (Utility.contains(freightObject, TAG_FREIGHTTYPE)) {
+          freight.SetFreightType(FreightTypeCode.values()[(Integer.parseInt(freightObject.getString(TAG_FREIGHTTYPE)))]);
         }
 
-        if (Utility.contains(storyObject, TAG_AUTHOR)) {
-          movie_director = storyObject.getString(TAG_AUTHOR);
+        if (Utility.contains(freightObject, TAG_DELIVERYBYDATE)) {
+          freight.SetDeliverByDate(formatter.parse(freightObject.getString(TAG_DELIVERYBYDATE)));
         }
 
-
-        if (Utility.contains(storyObject, TAG_DATE)) {
-          release_date = storyObject.getString(TAG_DATE);
-        }
-        if (Utility.contains(storyObject, TAG_SOURCE)) {
-          movie_source = storyObject.getString(TAG_SOURCE);
-        }
-        if (Utility.contains(storyObject, TAG_PERMALINK)) {
-          permalink = storyObject.getString(TAG_PERMALINK);
+        if (Utility.contains(freightObject, TAG_LOADINGDATE)) {
+          freight.SetLoadingDate(formatter.parse(freightObject.getString(TAG_LOADINGDATE)));
         }
 
-        if (Utility.contains(storyObject, TAG_FEATURED_IMG)) {
-          featured_img = storyObject.getString(TAG_FEATURED_IMG);
+       if (Utility.contains(freightObject, TAG_DATECREATED)) {
+        freight.SetDateCreated(formatterr.parse(freightObject.getString(TAG_DATECREATED)));
+       }
+
+
+      if (Utility.contains(freightObject, TAG_ISACTIVE)) {
+          freight.SetIsActive(freightObject.getBoolean(TAG_ISACTIVE));
+        }
+        if (Utility.contains(freightObject, TAG_ISDELIVERED)) {
+          freight.SetIsDelivered(freightObject.getBoolean(TAG_ISDELIVERED));
+        }
+        if (Utility.contains(freightObject, TAG_ISFULLVEHICLEQUANTITY)) {
+          freight.SetIsFullVehicleQuantity(freightObject.getBoolean(TAG_ISFULLVEHICLEQUANTITY));
         }
 
-        if (Utility.contains(storyObject, TAG_VIEW_TYPE)) {
-          VIEW_TYPE = storyObject.getString(TAG_VIEW_TYPE);
+        if (Utility.contains(freightObject, TAG_ISVATINCLUDED)) {
+          freight.SetIsVatIncluded(freightObject.getBoolean(TAG_ISVATINCLUDED));
         }
 
+        if (Utility.contains(freightObject, TAG_ISTAKEN)) {
+          freight.SetIsTaken(freightObject.getBoolean(TAG_ISTAKEN));
+        }
 
+        if (Utility.contains(freightObject, TAG_WEIGHT)) {
+          freight.SetWeight(freightObject.getInt(TAG_WEIGHT));
+        }
 
+        if (Utility.contains(freightObject, TAG_TOTALPRICE)) {
+          freight.SetTotalPrice(Integer.parseInt(freightObject.getString(TAG_TOTALPRICE)));
+        }
 
+        if (Utility.contains(freightObject, TAG_UNITPRICE)) {
+          freight.SetUnitPrice(Integer.parseInt(freightObject.getString(TAG_UNITPRICE)));
+        }
 
-        movie.setMovie_title(movie_title);
-        movie.setMovie_id(movie_id);
-        movie.setMovie_director(movie_director);
-        movie.setRelease_date(release_date);
-        movie.setMovie_source(movie_source);
-        movie.setFeatured_img(featured_img);
-        movie.setPermalink(permalink);
-        movie.setVIEW_TYPE(VIEW_TYPE);
+        if (Utility.contains(freightObject, TAG_ADDRESS)) {
+          freight.SetAddress(AddressParcer.parse((freightObject.getString(TAG_ADDRESS))));
+        }
 
+        if (Utility.contains(freightObject, TAG_DESTINATIONADDRESS)) {
+          freight.SetDestinationAddress(AddressParcer.parse((freightObject.getString(TAG_DESTINATIONADDRESS))));
+        }
 
-
-
-
-
-        MovieList.add(movie);
-      }
-
+        if (Utility.contains(freightObject, TAG_LOCATION)) {
+          freight.SetLocation(LocationParcer.parse((freightObject.getString(TAG_LOCATION))));
+        }
     }
 
     catch (JSONException e) {
       e.printStackTrace();
+    } catch (ParseException e) {
+      e.printStackTrace();
     }
 
-    return MovieList;
-
+    return freight;
   }
 
 }

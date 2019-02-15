@@ -1,18 +1,22 @@
-package model;
+package com.example.emrebabayigit.pickoapp.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import gamyoncular.freightfinder.enums.FreightTypeCode;
+import com.example.emrebabayigit.pickoapp.enums.FreightTypeCode;
+import com.example.emrebabayigit.pickoapp.enums.TrailerTypeCode;
 
 /**
  * Created by ebabayigit on 20/04/2017.
  */
 
-public class FreightViewModel {
+public class FreightViewModel implements Serializable {
 
     public long Id;
 
     public FreightTypeCode FreightType;
+
+    public TrailerTypeCode TrailerType;
 
     public int Weight;
 
@@ -40,15 +44,15 @@ public class FreightViewModel {
 
     public String Description;
 
-    public Address DestinationAddress;
+    public AddressViewModel DestinationAddress;
 
     public Company Company;
 
-    public Address Address;
+    public AddressViewModel Address;
 
-    public Location Location;
+    public LocationViewModel Location;
 
-    public Vehicle Vehicle;
+    public VehicleViewModel Vehicle;
 
 
     // Getters and Setters
@@ -72,6 +76,16 @@ public class FreightViewModel {
         FreightType = freightTypeCode;
     }
 
+    public TrailerTypeCode GetTrailerType()
+    {
+        return TrailerType;
+    }
+
+    public void SetTrailerType(TrailerTypeCode trailerTypeCode)
+    {
+        TrailerType = trailerTypeCode;
+    }
+
     public long GetIWeight()
     {
         return Weight;
@@ -90,16 +104,6 @@ public class FreightViewModel {
     public void SetIsFullVehicleQuantity(boolean isFullVehicleQuantity)
     {
         IsFullVehicleQuantity = isFullVehicleQuantity;
-    }
-
-    public Date GetDateCreated()
-    {
-        return DateCreated;
-    }
-
-    public void SetIDateCreated(Date dateCreated)
-    {
-        DateCreated = dateCreated;
     }
 
     public Date GetLoadingDate()
@@ -200,6 +204,46 @@ public class FreightViewModel {
     public void SetDescription(String description)
     {
         Description = description;
+    }
+
+    public void SetAddress(AddressViewModel address)
+    {
+        Address = address;
+    }
+
+    public AddressViewModel GetAddress()
+    {
+        return Address;
+    }
+
+    public void SetDestinationAddress(AddressViewModel address)
+    {
+        DestinationAddress = address;
+    }
+
+    public AddressViewModel GetDestinationAddress()
+    {
+        return DestinationAddress;
+    }
+
+    public void SetLocation(LocationViewModel location)
+    {
+        Location = location;
+    }
+
+    public LocationViewModel GetLocation()
+    {
+        return Location;
+    }
+
+    public void SetDateCreated(Date dateCreated)
+    {
+        DateCreated = dateCreated;
+    }
+
+    public Date GetDateCreated()
+    {
+        return DateCreated;
     }
 
 }

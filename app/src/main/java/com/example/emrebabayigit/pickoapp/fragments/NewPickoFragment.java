@@ -3,6 +3,7 @@ package com.example.emrebabayigit.pickoapp.fragments;
 
 import android.app.Activity;
 import android.content.ClipData;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +13,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -37,9 +39,15 @@ import android.widget.Toast;
 import com.example.emrebabayigit.pickoapp.R;
 import com.example.emrebabayigit.pickoapp.models.Dimensions;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 /**
@@ -264,11 +272,69 @@ public class NewPickoFragment extends Fragment {
 
                 setImages(onSelectFromGalleryResult(data));
 
-//            else if (requestCode == REQUEST_CAMERA)
-//                onCaptureImageResult(data);
+            else if (requestCode == REQUEST_CAMERA)
+                onCaptureImageResult(data);
         }
 
     }
+
+    private File createImageFile() throws IOException
+    {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "Picko_JPEG" + timeStamp + "_";
+        File storageDir = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DOCUMENTS),"Whatsapp");
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        String mCurrentPhotoPath = "file:" + image.getAbsolutePath();
+        return image;
+
+
+    }
+
+
+    private void onCaptureImageResult(Intent data) {
+        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        int imageWidth = (int) ((width*45)/100);
+        int imageHeight = (int) ((height*23)/100);
+
+        try {
+            File file = createImageFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+//        thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+//
+//        File destination = new File(Environment.getExternalStorageDirectory(),
+//                System.currentTimeMillis() + ".jpg");
+//
+//        FileOutputStream fo;
+//        try {
+//            destination.createNewFile();
+//            fo = new FileOutputStream(destination);
+//            fo.write(bytes.toByteArray());
+//            fo.close();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+        ArrayList<Bitmap> bitmaps = new ArrayList<>();
+        thumbnail = Bitmap.createScaledBitmap(thumbnail,imageWidth,imageHeight, false);
+        bitmaps.add(thumbnail);
+        setImages(bitmaps);
+
+    }
+
 
     public void setImages(ArrayList<Bitmap> bitmaps) {
         switch (clickedImage)

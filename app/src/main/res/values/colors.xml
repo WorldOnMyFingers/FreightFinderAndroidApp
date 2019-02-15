@@ -8,5 +8,8 @@
     <color name="colorAccent">#c8e8ff</color>
     <color name="colorTransparent">#00000000</color>
     <color name="toolbarColour">#c1ff1a</color>
+    <color name="white">#FFFFFF</color>
+    <color name="lightGrey">#A9A9A9</color>
+    <color name="whiteSmoke">#F0F0F0</color>
 
 </resources>

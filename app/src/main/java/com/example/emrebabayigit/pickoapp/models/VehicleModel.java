@@ -1,10 +1,12 @@
-package model;
+package com.example.emrebabayigit.pickoapp.models;
+
+import java.io.Serializable;
 
 /**
  * Created by ebabayigit on 20/04/2017.
  */
 
-public class VehicleModel {
+public class VehicleModel implements Serializable {
 
     public String Code;
 

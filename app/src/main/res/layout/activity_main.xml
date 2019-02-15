@@ -11,8 +11,8 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="@color/toolbarColour"
+            android:layout_height="5dp"
+            android:background="@color/colorPrimary"
             app:titleTextColor="@color/navigationBarColor"
             android:layout_gravity="center"
             app:layout_scrollFlags="scroll|enterAlways"
@@ -25,9 +25,11 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="@dimen/custom_tab_layout_height"
-            android:background="@color/toolbarColour"
-            app:tabIndicatorColor="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
+            app:tabIndicatorColor="@color/white"
             app:tabMode="fixed"
+            app:tabPaddingStart="20dp"
+            app:tabPaddingEnd="20dp"
             app:tabGravity="center"/>
     </android.support.design.widget.AppBarLayout>
 

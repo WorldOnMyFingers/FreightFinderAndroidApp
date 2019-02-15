@@ -8,6 +8,16 @@
     <dimen name="custom_tab_layout_height">55dp</dimen>
 
 
+    <!-- Freight Ad Card -->
+
+    <dimen name="freightAd_vehicle_image_width">40dp</dimen>
+    <dimen name="freightAd_vehicle_image_height">40dp</dimen>
+    <dimen name="freightAd_vehicle_image_margin_left">40dp</dimen>
+    <dimen name="freightAd_vehicle_image_margin_top">10dp</dimen>
+    <dimen name="freightAd_vehicle_image_margin_right">40dp</dimen>
+
+
+
     <!-- CardView -->
     <dimen name="inside_card_item_margin">10dp</dimen>
     <dimen name="inside_card_linearlayout_margin_top">1dp</dimen>
