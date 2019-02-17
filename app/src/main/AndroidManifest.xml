@@ -5,8 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -22,7 +22,17 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.GalleryAndCamera" />
-        <activity android:name=".activities.FreightDetails"></activity>
+
+
+        <service
+            android:name=".Services.LocationUpdatesService"
+            android:icon="@drawable/ic_photo_camera_black_24dp"
+            android:label="@string/service_name" />
+
+        <activity android:name=".activities.FreightsListActivity"
+            android:parentActivityName=".activities.MainActivity"/>
+        <activity android:name=".activities.FreightDetails"
+            android:parentActivityName=".activities.FreightsListActivity"/>
     </application>
 
 </manifest>

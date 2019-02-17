@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -40,6 +42,11 @@ public class FreightDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_freight_details);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Freight Details");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Resources res = getResources();
          baseUrl = res.getString(R.string.BaseUrl);
@@ -82,6 +89,16 @@ public class FreightDetails extends AppCompatActivity {
         description.setText(freight.Description);
         baseUrl = this.getResources().getString(R.string.BaseUrl);
         url = baseUrl+"api/offertofreight/post";
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return true;
     }
 
     private void publishToastMessage(String toastMessage){

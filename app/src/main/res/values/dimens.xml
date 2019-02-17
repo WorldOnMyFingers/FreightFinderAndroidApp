@@ -17,7 +17,6 @@
     <dimen name="freightAd_vehicle_image_margin_right">40dp</dimen>
 
 
-
     <!-- CardView -->
     <dimen name="inside_card_item_margin">10dp</dimen>
     <dimen name="inside_card_linearlayout_margin_top">1dp</dimen>
@@ -27,4 +26,7 @@
 
     <dimen name="cardview_title_size">24sp</dimen>
     <dimen name="cardview_description_size">16sp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

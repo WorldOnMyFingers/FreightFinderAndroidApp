@@ -1,23 +1,36 @@
 package com.example.emrebabayigit.pickoapp.activities;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.IntentSender;
+import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.net.Uri;
+import android.os.IBinder;
 import android.os.Looper;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +40,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.example.emrebabayigit.pickoapp.BuildConfig;
 import com.example.emrebabayigit.pickoapp.R;
+import com.example.emrebabayigit.pickoapp.Services.LocationUpdatesService;
+import com.example.emrebabayigit.pickoapp.Util.Utils;
 import com.example.emrebabayigit.pickoapp.Volley.CustomVolley;
 import com.example.emrebabayigit.pickoapp.enums.LocationTypeCodes;
 import com.example.emrebabayigit.pickoapp.fragments.MyOffersFragment;
@@ -57,6 +73,181 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Foreground location updates
+    //..
+    //..
+    // Used in checking for runtime permissions.
+    private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
+
+    // The BroadcastReceiver used to listen from broadcasts from the service.
+    private MyReceiver myReceiver;
+
+    // A reference to the service used to get location updates.
+    private LocationUpdatesService mService = null;
+
+    // Tracks the bound state of the service.
+    private boolean mBound = false;
+
+    // Monitors the state of the connection to the service.
+    private final ServiceConnection mServiceConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            LocationUpdatesService.LocalBinder binder = (LocationUpdatesService.LocalBinder) service;
+            mService = binder.getService();
+            mBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mService = null;
+            mBound = false;
+        }
+    };
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // Bind to the service. If the service is in foreground mode, this signals to the service
+        // that since this activity is in the foreground, the service can exit foreground mode.
+        bindService(new Intent(this, LocationUpdatesService.class), mServiceConnection,
+                Context.BIND_AUTO_CREATE);
+    }
+
+
+    /**
+     * Receiver for broadcasts sent by {@link LocationUpdatesService}.
+     */
+    private class MyReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Location location = intent.getParcelableExtra(LocationUpdatesService.EXTRA_LOCATION);
+            if (location != null) {
+                Toast.makeText(MainActivity.this, Utils.getLocationText(location),
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    /**
+     * Returns the current state of the permissions needed.
+     */
+    private boolean checkPermissions() {
+        return  PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION);
+    }
+
+    private void requestPermissions() {
+        boolean shouldProvideRationale =
+                ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.ACCESS_FINE_LOCATION);
+
+        // Provide an additional rationale to the user. This would happen if the user denied the
+        // request previously, but didn't check the "Don't ask again" checkbox.
+        if (shouldProvideRationale) {
+            Log.i(TAG, "Displaying permission rationale to provide additional context.");
+            Snackbar.make(
+                    findViewById(R.id.activity_main),
+                    R.string.permission_rationale,
+                    Snackbar.LENGTH_INDEFINITE)
+                    .setAction(R.string.ok, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            // Request permission
+                            ActivityCompat.requestPermissions(MainActivity.this,
+                                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                    REQUEST_PERMISSIONS_REQUEST_CODE);
+                        }
+                    })
+                    .show();
+        } else {
+            Log.i(TAG, "Requesting permission");
+            // Request permission. It's possible this can be auto answered if device policy
+            // sets the permission in a given state or the user denied the permission
+            // previously and checked "Never ask again".
+            ActivityCompat.requestPermissions(MainActivity.this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    REQUEST_PERMISSIONS_REQUEST_CODE);
+        }
+    }
+
+    /**
+     * Callback received when a permissions request has been completed.
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        Log.i(TAG, "onRequestPermissionResult");
+        if (requestCode == REQUEST_PERMISSIONS_REQUEST_CODE) {
+            if (grantResults.length <= 0) {
+                // If user interaction was interrupted, the permission request is cancelled and you
+                // receive empty arrays.
+                Log.i(TAG, "User interaction was cancelled.");
+            } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission was granted.
+                mService.requestLocationUpdates();
+            } else {
+                // Permission denied.
+                Snackbar.make(
+                        findViewById(R.id.activity_main),
+                        R.string.permission_denied_explanation,
+                        Snackbar.LENGTH_INDEFINITE)
+                        .setAction(R.string.settings, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                // Build intent that displays the App settings screen.
+                                Intent intent = new Intent();
+                                intent.setAction(
+                                        Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                Uri uri = Uri.fromParts("package",
+                                        BuildConfig.APPLICATION_ID, null);
+                                intent.setData(uri);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                            }
+                        })
+                        .show();
+            }
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LocalBroadcastManager.getInstance(this).registerReceiver(myReceiver,
+                new IntentFilter(LocationUpdatesService.ACTION_BROADCAST));
+
+
+    }
+
+    @Override
+    protected void onPause() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(myReceiver);
+        if (!checkPermissions()) {
+            requestPermissions();
+        } else {
+            mService.requestLocationUpdates();
+        }
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        if (mBound) {
+            // Unbind from the service. This signals to the service that this activity is no longer
+            // in the foreground, and the service can respond by promoting itself to a foreground
+            // service.
+            unbindService(mServiceConnection);
+            mBound = false;
+        }
+
+        super.onStop();
+    }
+
+    //end of foreground location
+
+
+
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -83,6 +274,7 @@ public class MainActivity extends AppCompatActivity {
     String baseUrl;
     String url;
 
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,12 +301,25 @@ public class MainActivity extends AppCompatActivity {
         mSettingsClient = LocationServices.getSettingsClient(this);
         mLocationRequest = new LocationRequest();
 
+
+        myReceiver = new MyReceiver();
+
+        viewPager.setCurrentItem(0);
+        // Check that the user hasn't revoked permissions by going to Settings.
+        /*if (Utils.requestingLocationUpdates(this)) {
+            if (!checkPermissions()) {
+                requestPermissions();
+            }
+        }*/
+
         // Kick off the process of building the LocationCallback, LocationRequest, and
         // LocationSettingsRequest objects.
-        createLocationCallback();
+        /*createLocationCallback();
         createLocationRequest();
         buildLocationSettingsRequest();
-        startLocationUpdates();
+        startLocationUpdates();*/
+
+
     }
 
     private void buildLocationSettingsRequest() {
@@ -245,45 +450,42 @@ public class MainActivity extends AppCompatActivity {
 
         TextView tabHome = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
         tabHome.setText("My Offers");
-        tabHome.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.baseline_list_white_36dp, 0, 0);
-        tabLayout.getTabAt(0).setCustomView(tabHome);
+        tabHome.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_format_list_numbered_white_24dp, 0, 0);
 
         TextView tabSearch = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
         tabSearch.setText("Search");
-        tabSearch.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.baseline_search_white_36dp, 0, 0);
-        tabLayout.getTabAt(1).setCustomView(tabSearch);
-
-
-//        TextView tabNewPicko = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-//        tabNewPicko.setText("Picko");
-//        tabNewPicko.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_photo_camera_black_24dp, 0, 0);
-//        tabLayout.getTabAt(2).setCustomView(tabNewPicko);
+        tabSearch.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_search_white_24dp, 0, 0);
 
         TextView tabMe = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
         tabMe.setText("Me");
-        tabMe.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.baseline_account_circle_white_36dp, 0, 0);
-        tabLayout.getTabAt(2).setCustomView(tabMe);
+        tabMe.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_account_circle_white_24dp, 0, 0);
 
-        TextView tabSettings = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+
+        /*TextView tabSettings = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
         tabSettings.setText("Settings");
-        tabSettings.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_settings_black_24dp, 0, 0);
-        tabLayout.getTabAt(3).setCustomView(tabSettings);
+        tabSettings.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_settings_white_24dp, 0, 0);*/
+
+        tabLayout.getTabAt(0).setCustomView(tabSearch);
+        tabLayout.getTabAt(1).setCustomView(tabHome);
+        tabLayout.getTabAt(2).setCustomView(tabMe);
+//        tabLayout.getTabAt(3).setCustomView(tabSettings);
 
 
     }
+
 
 
     public void setupViewPager(ViewPager upViewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new MyOffersFragment(), "MyOffers");
         adapter.addFragment(new SearchFragment(), "Search");
-//        adapter.addFragment(new NewPickoFragment(), "NewPicko");
+        adapter.addFragment(new MyOffersFragment(), "MyOffers");
         adapter.addFragment(new MeFragment(), "Me");
-        adapter.addFragment(new SettingsFragment(), "Settings");
+//        adapter.addFragment(new SettingsFragment(), "Settings");
 
         viewPager.setAdapter(adapter);
 
     }
+
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
