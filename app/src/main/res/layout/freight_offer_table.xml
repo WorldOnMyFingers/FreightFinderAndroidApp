@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="0,1,2"
+    android:shrinkColumns="*"
+    android:layout_marginTop="20dp">
+
+    <TableRow
+        android:background="@color/colorVeryLightGrey">
+        <TextView
+            android:layout_column="1"
+            android:text="@string/Label_Freight_Type"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/FreightType"
+            android:text="Damper"
+            android:padding="3dip"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="@string/Label_Vehicle_Type"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/VehicleType"
+            android:text="Damper"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow
+        android:background="@color/colorVeryLightGrey">
+        <TextView
+            android:layout_column="1"
+            android:text="@string/Label_Freight_Weight"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/FreightWeight"
+            android:text="200 Kg"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="@string/Label_Freight_Volume"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/FreightVolume"
+            android:text="30 m3"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow
+        android:background="@color/colorVeryLightGrey">
+        <TextView
+            android:layout_column="1"
+            android:text="@string/Label_Freight_Loading_Date"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/LoadingDate"
+            android:text="07/02/2017"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="@string/Label_Freight_DeliverByDate"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/DeliverByDate"
+            android:text="12/10/2017"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow
+        android:background="@color/colorVeryLightGrey">
+        <TextView
+            android:layout_column="1"
+            android:text="@string/Label_Freight_Date_Created"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/DateCreated"
+            android:text="12/10/2017"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="@string/Label_Freight_IsVatIncluded"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/Vat"
+            android:text="Yes"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow
+        android:background="@color/colorVeryLightGrey">
+        <TextView
+            android:layout_column="1"
+            android:text="@string/Label_Freight_FullVehicleQuantity"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/IsFullVehicle"
+            android:text="Yes"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_column="1"
+            android:text="@string/Label_Freight_Description"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/Description"
+            android:text="Acik aractcik aracta branda sartAcik Acik aractcik aracta branda sart"
+            android:gravity="left"
+            android:padding="3dip"
+            android:layout_height="wrap_content"
+            android:layout_width="10dp"/>
+    </TableRow>
+</TableLayout>

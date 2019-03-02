@@ -1,6 +1,7 @@
 package com.example.emrebabayigit.pickoapp.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.emrebabayigit.pickoapp.Helpers.StaticHelpers;
 import com.example.emrebabayigit.pickoapp.R;
+import com.example.emrebabayigit.pickoapp.activities.OfferDetailsActivity;
 import com.example.emrebabayigit.pickoapp.models.FreightOfferViewModel;
 
 import java.util.ArrayList;
@@ -52,6 +54,20 @@ public class FreightOfferAdapter extends RecyclerView.Adapter<FreightOfferAdapte
         holder.weight.setText(offer.GetWeight()+ " Kg");
         holder.freightType.setText(StaticHelpers.getResourceStringByName(_context, "Freight_Type_"+offer.GetFreightType().name()));
         holder.price.setText(offer.GetPrice());
+        if(offer.IsTheFreightTaken == true && offer.IsAccepted == true){
+            // when the freight is still available and my offer is not accepted
+            holder.statusView.setBackgroundColor(this._context.getResources().getColor(R.color.colorPetrolGreen));
+            holder.statusTextView.setText(this._context.getResources().getText(R.string.freight_offer_status_accepted));
+        }else if(offer.IsTheFreightTaken == true && offer.IsAccepted == false) {
+            //red
+            holder.statusView.setBackgroundColor(this._context.getResources().getColor(R.color.colorBrickRed));
+            holder.statusTextView.setText(this._context.getResources().getText(R.string.freight_offer_status_rejected));
+        }else if(offer.IsTheFreightTaken == false && offer.IsAccepted == false){
+            //yellow
+            holder.statusView.setBackgroundColor(this._context.getResources().getColor(R.color.colorOrange));
+            holder.statusTextView.setText(this._context.getResources().getText(R.string.freight_offer_status_pending));
+        }
+
 
     }
 
@@ -68,10 +84,13 @@ public class FreightOfferAdapter extends RecyclerView.Adapter<FreightOfferAdapte
         TextView toCity;
         TextView freightType;
         TextView weight;
+        TextView statusTextView;
+        View statusView;
+
 
         FreightOfferViewModel offerObject;
 
-        public FreightOfferViewHolder(View itemView) {
+        public FreightOfferViewHolder(final View itemView) {
             super(itemView);
             cv = (CardView) itemView.findViewById(R.id.freightOfferCardView);
             fromCity = (TextView) itemView.findViewById(R.id.textViewFreightOfferFrom);
@@ -79,6 +98,18 @@ public class FreightOfferAdapter extends RecyclerView.Adapter<FreightOfferAdapte
             freightType = (TextView) itemView.findViewById(R.id.textViewFreightOfferFreightType);
             price = (TextView) itemView.findViewById(R.id.textViewFreightOfferPrice);
             weight = (TextView) itemView.findViewById(R.id.textViewFreightOfferWeight);
+            statusView = (View) itemView.findViewById(R.id.offerStatusView);
+            statusTextView = (TextView) itemView.findViewById(R.id.textViewFreightOfferStatus);
+
+            cv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(cv.getContext(), OfferDetailsActivity.class);
+                    intent.putExtra("OfferId", offerObject.GetOfferId());
+                    cv.getContext().startActivity(intent);
+
+                }
+            });
         }
     }
 }

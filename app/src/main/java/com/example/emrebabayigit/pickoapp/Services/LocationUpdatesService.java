@@ -22,9 +22,16 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.emrebabayigit.pickoapp.R;
 import com.example.emrebabayigit.pickoapp.Util.Utils;
+import com.example.emrebabayigit.pickoapp.Volley.CustomVolley;
 import com.example.emrebabayigit.pickoapp.activities.MainActivity;
+import com.example.emrebabayigit.pickoapp.enums.LocationTypeCodes;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -33,9 +40,17 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class LocationUpdatesService extends Service {
     private static final String PACKAGE_NAME =
         "com.google.android.gms.location.sample.locationupdatesforegroundservice";
+
+
+    RequestQueue requestQueue;
+    String baseUrl;
+    String url;
 
     private static final String TAG = LocationUpdatesService.class.getSimpleName();
 
@@ -55,7 +70,7 @@ public class LocationUpdatesService extends Service {
     /**
      * The desired interval for location updates. Inexact. Updates may be more or less frequent.
      */
-    private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 10000;
+    private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 1000 * 60 * 5;
 
     /**
      * The fastest rate for active location updates. Updates will never be more frequent
@@ -103,6 +118,10 @@ public class LocationUpdatesService extends Service {
 
     @Override
     public void onCreate() {
+        requestQueue = CustomVolley.getInstance(this).getRequestQueue();
+        baseUrl = this.getResources().getString(R.string.BaseUrl);
+        url = baseUrl+"api/location/";
+
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         mLocationCallback = new LocationCallback() {
@@ -110,6 +129,7 @@ public class LocationUpdatesService extends Service {
             public void onLocationResult(LocationResult locationResult) {
                 super.onLocationResult(locationResult);
                 onNewLocation(locationResult.getLastLocation());
+                postLocation(locationResult.getLastLocation());
             }
         };
 
@@ -234,6 +254,32 @@ public class LocationUpdatesService extends Service {
         } catch (SecurityException unlikely) {
             Utils.setRequestingLocationUpdates(this, true);
             Log.e(TAG, "Lost location permission. Could not remove updates. " + unlikely);
+        }
+    }
+
+    private void postLocation(Location mCurrentLocation){
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("Latitude", mCurrentLocation.getLatitude());
+            jsonBody.put("Longitude", mCurrentLocation.getLongitude());
+            jsonBody.put("LocationType", LocationTypeCodes.LocationDriver);
+
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    Log.d(TAG, String.valueOf(response));
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                    Log.d(TAG, String.valueOf(error));
+
+                }
+            });
+            requestQueue.add(request);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 

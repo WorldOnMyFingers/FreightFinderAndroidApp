@@ -14,6 +14,7 @@ public class FreightOfferViewModel {
     public long FreightId ;
     public Date OfferDate ;
     public boolean IsAccepted ;
+    public boolean IsTheFreightTaken;
     public Date DateAccepted ;
     public String From ;
     public String To ;
@@ -23,12 +24,13 @@ public class FreightOfferViewModel {
 
 
     public FreightOfferViewModel(){}
-    public FreightOfferViewModel(int offerId, long freightId, Date offerDate, boolean isAccepted, Date dateAccepted,
+    public FreightOfferViewModel(int offerId, long freightId, Date offerDate, boolean isAccepted, boolean isTheFreightTaken, Date dateAccepted,
                                  String from, String to, String weight, String price, FreightTypeCode freightType){
         OfferId = offerId;
         FreightId = freightId;
         OfferDate = offerDate;
         IsAccepted = isAccepted;
+        IsTheFreightTaken = isTheFreightTaken;
         DateAccepted = dateAccepted;
         From = from;
         To = to;
@@ -41,6 +43,7 @@ public class FreightOfferViewModel {
     public long GetFreightId(){return FreightId;}
     public Date GetOfferDate(){return OfferDate;}
     public boolean GetIsAccepted(){return IsAccepted;}
+    public boolean GetIsTheFreightTaken(){return IsTheFreightTaken;}
     public Date GetDateAccepted(){return DateAccepted;}
     public String GetFrom(){return From;}
     public String GetTo(){return To;}
@@ -63,6 +66,8 @@ public class FreightOfferViewModel {
     public void SetIsAccepted(boolean isAccepted){
         IsAccepted = isAccepted;
     }
+
+    public void SetIsTheFreightTaken(boolean isTheFreightTaken){ IsTheFreightTaken = isTheFreightTaken; }
 
     public void SetDateAccepted(Date dateAccepted){
         DateAccepted = dateAccepted;

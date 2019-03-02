@@ -53,6 +53,7 @@ public class SearchFragment extends Fragment {
             public void onClick(View view) {
                 Context context = getActivity().getApplicationContext();
                 Intent intent = new Intent(context, FreightsListActivity.class);
+                intent.putExtra("MAX_DISTANCE", seekbar.getProgress());
                 startActivityForResult(intent, 1);
             }
         });

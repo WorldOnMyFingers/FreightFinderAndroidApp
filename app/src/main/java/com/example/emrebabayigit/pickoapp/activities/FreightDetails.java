@@ -30,8 +30,7 @@ import java.util.Map;
 
 public class FreightDetails extends AppCompatActivity {
 
-    TextView cityFrom, countyFrom, cityTo, countyTo;
-    TextView vehicleType, freightType, weight, volume, loadingDate, dateCreated, description;
+    TextView cityFrom, countyFrom, cityTo, countyTo, vehicleType, freightType, weight, volume, loadingDate, dateCreated, description, deliverByDate;
     Button apply;
     FreightViewModel freight;
     RequestQueue requestQueue;
@@ -60,11 +59,12 @@ public class FreightDetails extends AppCompatActivity {
 
         vehicleType = (TextView)findViewById(R.id.VehicleType);
         freightType = (TextView)findViewById(R.id.FreightType);
-        weight = (TextView)findViewById(R.id.weight);
-        volume = (TextView)findViewById(R.id.volume);
-        loadingDate = (TextView)findViewById(R.id.loadingTime);
-        dateCreated = (TextView)findViewById(R.id.datecreated);
-        description = (TextView)findViewById(R.id.description);
+        weight = (TextView)findViewById(R.id.FreightWeight);
+        volume = (TextView)findViewById(R.id.FreightVolume);
+        loadingDate = (TextView)findViewById(R.id.LoadingDate);
+        dateCreated = (TextView)findViewById(R.id.DateCreated);
+        description = (TextView)findViewById(R.id.Description);
+        deliverByDate = (TextView)findViewById(R.id.DeliverByDate);
 
 
         apply = (Button) findViewById(R.id.buttonApply);
@@ -85,6 +85,7 @@ public class FreightDetails extends AppCompatActivity {
         freightType.setText(StaticHelpers.getResourceStringByName(this, "Freight_Type_"+freight.GetFreightType().name()));
         dateCreated.setText(DateFormat.format("dd/MM/yyyy  HH:mm", freight.GetDateCreated()).toString());
         loadingDate.setText(DateFormat.format("dd/MM/yyyy", freight.GetLoadingDate()).toString());
+        deliverByDate.setText(DateFormat.format("dd/MM/yyyy", freight.GetDeliverByDate()).toString());
         weight.setText(Long.toString(freight.GetIWeight()) + " Kg");
         description.setText(freight.Description);
         baseUrl = this.getResources().getString(R.string.BaseUrl);

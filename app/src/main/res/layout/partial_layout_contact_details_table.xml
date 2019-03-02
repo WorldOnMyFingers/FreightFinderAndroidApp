@@ -1,0 +1,101 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <TableRow>
+
+        <TextView
+            android:layout_column="0"
+            android:padding="3dip"
+            android:text="Contact Details"
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"/>
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_column="0"
+            android:padding="3dip"
+            android:text="@string/label_telephone" />
+
+        <TextView
+            android:id="@+id/textViewTelephone"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text="0838462586" />
+    </TableRow>
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:background="@color/colorVeryLightGrey">
+
+        <TextView
+            android:layout_column="0"
+            android:padding="3dip"
+            android:text="@string/label_address_line" />
+
+        <TextView
+            android:id="@+id/textViewAddressLine"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:maxWidth="20dp"
+            android:padding="3dip"
+            android:text="21 James street, higland avenuehigland avenuehigland avenuehigland avenue" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_column="0"
+            android:padding="3dip"
+            android:text="@string/label_district" />
+
+        <TextView
+            android:id="@+id/textViewDistrict"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text="Wicklow1Wicklow1Wicklow1" />
+    </TableRow>
+
+    <TableRow android:background="@color/colorVeryLightGrey">
+
+        <TextView
+            android:layout_column="0"
+            android:text="@string/label_county" />
+
+        <TextView
+            android:id="@+id/textViewCounty"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text="Wicklow" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_column="0"
+            android:padding="3dip"
+            android:text="@string/label_city" />
+
+        <TextView
+            android:id="@+id/textViewCity"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text="Dublin" />
+    </TableRow>
+
+    <TableRow android:background="@color/colorVeryLightGrey">
+
+        <TextView
+            android:layout_column="0"
+            android:padding="3dip"
+            android:text="@string/label_country" />
+
+        <TextView
+            android:id="@+id/textViewCountry"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text="Ireland" />
+    </TableRow>
+</merge>

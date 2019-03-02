@@ -23,16 +23,18 @@
         </activity>
         <activity android:name=".activities.GalleryAndCamera" />
 
-
         <service
             android:name=".Services.LocationUpdatesService"
             android:icon="@drawable/ic_photo_camera_black_24dp"
             android:label="@string/service_name" />
 
-        <activity android:name=".activities.FreightsListActivity"
-            android:parentActivityName=".activities.MainActivity"/>
-        <activity android:name=".activities.FreightDetails"
-            android:parentActivityName=".activities.FreightsListActivity"/>
+        <activity
+            android:name=".activities.FreightsListActivity"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity
+            android:name=".activities.FreightDetails"
+            android:parentActivityName=".activities.FreightsListActivity" />
+        <activity android:name=".activities.OfferDetailsActivity"></activity>
     </application>
 
 </manifest>

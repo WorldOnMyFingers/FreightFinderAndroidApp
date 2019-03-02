@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
+
+            <include layout="@layout/partial_layout_from_to_panel"></include>
+
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1"
+                android:shrinkColumns="*"
+                android:layout_margin="10dp">
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_column="0"
+                        android:padding="3dip"
+                        android:text="Offer Details"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"/>
+                </TableRow>
+
+                <TableRow
+                    android:background="@color/colorVeryLightGrey">
+                    <TextView
+                        android:layout_column="0"
+                        android:text="@string/label_freight_offer_date"
+                        android:padding="3dip" />
+                    <TextView
+                        android:id="@+id/textViewOfferDateAndTime"
+                        android:text="07/02/2017"
+                        android:gravity="left"
+                        android:layout_height="wrap_content"
+                        android:padding="3dip" />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:layout_column="0"
+                        android:text="@string/label_freight_offer_status"
+                        android:padding="3dip" />
+                    <TextView
+                        android:id="@+id/textViewStatus"
+                        android:text="Accepted"
+                        android:gravity="left"
+                        android:padding="3dip" />
+                </TableRow>
+
+                <TableRow
+                    android:background="@color/colorVeryLightGrey">
+                    <TextView
+                        android:layout_column="0"
+                        android:text="@string/label_freight_offer_date_accepted"
+                        android:padding="3dip" />
+                    <TextView
+                        android:id="@+id/textViewDateAccepted"
+                        android:text="07/02/2017 17:08"
+                        android:gravity="left"
+                        android:padding="3dip" />
+                </TableRow>
+
+                <include layout="@layout/freight_details_table_partial_layout"></include>
+
+                <include layout="@layout/partial_layout_contact_details_table"></include>
+
+
+            </TableLayout>
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

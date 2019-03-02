@@ -45,7 +45,6 @@
     <string name="SearchInstructionText">Please select a maximum distance for your freight search </string>
 
 
-
     <string name="request_location_updates">Request location updates</string>
     <string name="remove_location_updates">Remove location updates</string>
 
@@ -58,6 +57,27 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="freight_offer_status_pending">Pending</string>
+    <string name="freight_offer_status_accepted">Accepted</string>
+    <string name="freight_offer_status_rejected">Rejected</string>
+
+    <string name="label_offer_details">Offer Details</string>
+    <string name="label_freight_offer_date">Offer Date</string>
+    <string name="label_freight_offer_status">Status</string>
+    <string name="label_freight_offer_date_accepted">Date Accepted</string>
+
+    <string name="label_address_line">Address Line</string>
+    <string name="label_district">District</string>
+    <string name="label_county">County</string>
+    <string name="label_city">City</string>
+    <string name="label_country">Country</string>
+    <string name="label_telephone">Telephone</string>
+
+
+
+
+
+
 
 
 </resources>

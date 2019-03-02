@@ -44,6 +44,7 @@ public class FreightsListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        int maxDistance = getIntent().getIntExtra("MAX_DISTANCE", 100);
         setContentView(R.layout.activity_freights_list);
         adapter = new RvAdapter(this);
 
@@ -65,7 +66,7 @@ public class FreightsListActivity extends AppCompatActivity {
         fromCounty = (TextView) findViewById(R.id.textViewFromCounty);
         requestQueue = CustomVolley.getInstance(this).getRequestQueue();
         baseUrl = this.getResources().getString(R.string.BaseUrl);
-        url = baseUrl+"api/Freight/getfreight?lon=34.4672222&lat=39.6580556&distance=12200";
+        url = baseUrl+"api/Freight/getfreight?lon=34.4672222&lat=39.6580556&distance="+ maxDistance;
 
         // Inflate the layout for this fragment
         loadFeed();

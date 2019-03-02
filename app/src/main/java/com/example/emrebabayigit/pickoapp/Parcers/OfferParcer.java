@@ -25,6 +25,7 @@ public class OfferParcer {
     private static final String TAG_FREIGHTID = "FreightId";
     private static final String TAG_OFFERDATE = "OfferDate";
     private static final String TAG_ISACCEPTED = "IsAccepted";
+    private static final String TAG_ISTHEFREIGHTTAKEN = "IsTheFreightTaken";
     private static final String TAG_DATEACCEPTED= "DateAccepted";
     private static final String TAG_FROM = "From";
     private static final String TAG_TO = "To";
@@ -32,7 +33,6 @@ public class OfferParcer {
     private static final String TAG_PRICE = "Price";
     private static final String TAG_FREIGHTTYPE = "FreightType";
 
-    private static SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
     private static SimpleDateFormat formatterr = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SS");
 
     public static FreightOfferViewModel Parse(String jsonData, Context context){
@@ -74,6 +74,10 @@ public class OfferParcer {
                 offer.SetIsAccepted(offerObject.getBoolean(TAG_ISACCEPTED));
             }
 
+            if (Utility.contains(offerObject, TAG_ISTHEFREIGHTTAKEN)) {
+                offer.SetIsTheFreightTaken(offerObject.getBoolean(TAG_ISTHEFREIGHTTAKEN));
+            }
+
             if (Utility.contains(offerObject, TAG_DATEACCEPTED)) {
                 offer.SetDateAccepted(formatterr.parse(offerObject.getString(TAG_DATEACCEPTED)));
             }
@@ -93,4 +97,20 @@ public class OfferParcer {
 
         return offer;
     }
+
+//    public static String EvaluateStatus(boolean isFreightTaken, boolean IsTheOfferAccepted){
+//        if(isFreightTaken == true && IsTheOfferAccepted == true){
+//            // when the freight is still available and my offer is not accepted
+//            holder.statusView.setBackgroundColor(this._context.getResources().getColor(R.color.colorPetrolGreen));
+//            holder.statusTextView.setText(this._context.getResources().getText(R.string.freight_offer_status_accepted));
+//        }else if(offer.IsTheFreightTaken == true && offer.IsAccepted == false) {
+//            //red
+//            holder.statusView.setBackgroundColor(this._context.getResources().getColor(R.color.colorBrickRed));
+//            holder.statusTextView.setText(this._context.getResources().getText(R.string.freight_offer_status_rejected));
+//        }else if(offer.IsTheFreightTaken == false && offer.IsAccepted == false){
+//            //yellow
+//            holder.statusView.setBackgroundColor(this._context.getResources().getColor(R.color.colorOrange));
+//            holder.statusTextView.setText(this._context.getResources().getText(R.string.freight_offer_status_pending));
+//        }
+//    }
 }

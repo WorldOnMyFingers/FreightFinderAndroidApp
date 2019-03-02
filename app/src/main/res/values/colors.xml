@@ -11,5 +11,14 @@
     <color name="white">#FFFFFF</color>
     <color name="lightGrey">#A9A9A9</color>
     <color name="whiteSmoke">#F0F0F0</color>
+    <color name="colorGreen">#228B22</color>
+    <color name="colorBrickRed">#B22222</color>
+    <color name="colorYellow">#BDB76B</color>
+    <color name="colorDarkGrey">#A9A9A9</color>
+    <color name="colorBrown">#A52A2A</color>
+    <color name="colorPetrolGreen">#008080</color>
+    <color name="colorBlack">#161616</color>
+    <color name="colorOrange">#ffa500</color>
+    <color name="colorVeryLightGrey">#f2f2f2</color>
 
 </resources>
