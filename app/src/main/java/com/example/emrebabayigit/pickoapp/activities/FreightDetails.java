@@ -30,7 +30,7 @@ import java.util.Map;
 
 public class FreightDetails extends AppCompatActivity {
 
-    TextView cityFrom, countyFrom, cityTo, countyTo, vehicleType, freightType, weight, volume, loadingDate, dateCreated, description, deliverByDate;
+    TextView cityFrom, countyFrom, cityTo, countyTo, freightType, weight, volume, loadingDate, dateCreated, description, deliverByDate;
     Button apply;
     FreightViewModel freight;
     RequestQueue requestQueue;
@@ -57,7 +57,6 @@ public class FreightDetails extends AppCompatActivity {
         cityTo = (TextView)findViewById(R.id.citytextto);
         countyTo = (TextView)findViewById(R.id.countytextto);
 
-        vehicleType = (TextView)findViewById(R.id.VehicleType);
         freightType = (TextView)findViewById(R.id.FreightType);
         weight = (TextView)findViewById(R.id.FreightWeight);
         volume = (TextView)findViewById(R.id.FreightVolume);

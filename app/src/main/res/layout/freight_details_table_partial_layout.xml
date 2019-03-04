@@ -20,22 +20,7 @@
 
         <TextView
             android:id="@+id/FreightType"
-            android:padding="3dip"
-            android:text="Damper" />
-    </TableRow>
-
-    <TableRow>
-
-        <TextView
-            android:layout_column="0"
-            android:padding="3dip"
-            android:text="@string/Label_Vehicle_Type" />
-
-        <TextView
-            android:id="@+id/VehicleType"
-            android:gravity="left"
-            android:padding="3dip"
-            android:text="Damper" />
+            android:padding="3dip" />
     </TableRow>
 
     <TableRow android:background="@color/colorVeryLightGrey">
@@ -48,8 +33,7 @@
         <TextView
             android:id="@+id/FreightWeight"
             android:gravity="left"
-            android:padding="3dip"
-            android:text="200 Kg" />
+            android:padding="3dip" />
     </TableRow>
 
     <TableRow>
@@ -62,8 +46,7 @@
         <TextView
             android:id="@+id/FreightVolume"
             android:gravity="left"
-            android:padding="3dip"
-            android:text="30 m3" />
+            android:padding="3dip" />
     </TableRow>
 
     <TableRow android:background="@color/colorVeryLightGrey">
@@ -76,8 +59,7 @@
         <TextView
             android:id="@+id/LoadingDate"
             android:gravity="left"
-            android:padding="3dip"
-            android:text="07/02/2017" />
+            android:padding="3dip" />
     </TableRow>
 
     <TableRow>
@@ -90,8 +72,7 @@
         <TextView
             android:id="@+id/DeliverByDate"
             android:gravity="left"
-            android:padding="3dip"
-            android:text="12/10/2017" />
+            android:padding="3dip" />
     </TableRow>
 
     <TableRow android:background="@color/colorVeryLightGrey">
@@ -104,8 +85,7 @@
         <TextView
             android:id="@+id/DateCreated"
             android:gravity="left"
-            android:padding="3dip"
-            android:text="12/10/2017" />
+            android:padding="3dip" />
     </TableRow>
 
     <TableRow>
@@ -118,8 +98,7 @@
         <TextView
             android:id="@+id/Vat"
             android:gravity="left"
-            android:padding="3dip"
-            android:text="Yes" />
+            android:padding="3dip" />
     </TableRow>
 
     <TableRow android:background="@color/colorVeryLightGrey">
@@ -132,8 +111,7 @@
         <TextView
             android:id="@+id/IsFullVehicle"
             android:gravity="left"
-            android:padding="3dip"
-            android:text="Yes" />
+            android:padding="3dip" />
     </TableRow>
 
     <TableRow android:layout_height="wrap_content">
@@ -148,7 +126,6 @@
             android:layout_height="wrap_content"
             android:gravity="left"
             android:maxWidth="30dp"
-            android:padding="3dip"
-            android:text="Acik aractcik aracta branda sartAcik Acik aractcik aracta branda sart" />
+            android:padding="3dip" />
     </TableRow>
 </merge>

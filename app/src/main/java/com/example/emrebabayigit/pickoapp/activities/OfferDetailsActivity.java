@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +28,7 @@ import com.example.emrebabayigit.pickoapp.models.OfferDetailsViewModel;
 
 public class OfferDetailsActivity extends AppCompatActivity {
 
-    TextView cityFrom, countyFrom, cityTo, countyTo, vehicleType, freightType, weight, volume, loadingDate, dateCreated, description, deliverByDate;
+    TextView cityFrom, countyFrom, cityTo, countyTo, freightType, weight, volume, loadingDate, dateCreated, description, deliverByDate;
     TextView offerDate, status, dateAccepted;
     TextView addressline, district, county, city, country;
     String baseUrl, url;
@@ -55,7 +56,6 @@ public class OfferDetailsActivity extends AppCompatActivity {
         countyFrom = (TextView) findViewById(R.id.countytextfrom);
         cityTo = (TextView) findViewById(R.id.citytextto);
         countyTo = (TextView) findViewById(R.id.countytextto);
-        vehicleType = (TextView) findViewById(R.id.VehicleType);
         freightType = (TextView) findViewById(R.id.FreightType);
         weight = (TextView) findViewById(R.id.FreightWeight);
         volume = (TextView) findViewById(R.id.FreightVolume);
@@ -90,9 +90,9 @@ public class OfferDetailsActivity extends AppCompatActivity {
         weight.setText(Long.toString(offerDetails.Freight.GetIWeight()) + " Kg");
         description.setText(offerDetails.Freight.Description);
 
-        offerDate.setText(offerDetails.GetOfferDate().toString());
+        offerDate.setText(DateFormat.format("dd/MM/yyyy  HH:mm", offerDetails.GetOfferDate()).toString());
         if(offerDetails.IsAccepted == true){
-            dateAccepted.setText(offerDetails.GetDateAccepted().toString());
+            dateAccepted.setText(DateFormat.format("dd/MM/yyyy  HH:mm", offerDetails.GetDateAccepted()).toString());
         }else{
             dateAccepted.setText(null);
         }
@@ -110,6 +110,16 @@ public class OfferDetailsActivity extends AppCompatActivity {
         city.setText(offerDetails.Freight.Address.City);
         country.setText(offerDetails.Freight.Address.Country);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return true;
     }
 
     private void getOffer() {

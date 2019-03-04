@@ -22,8 +22,7 @@
         <TextView
             android:id="@+id/textViewTelephone"
             android:gravity="left"
-            android:padding="3dip"
-            android:text="0838462586" />
+            android:padding="3dip" />
     </TableRow>
 
     <TableRow
@@ -40,8 +39,7 @@
             android:layout_height="wrap_content"
             android:gravity="left"
             android:maxWidth="20dp"
-            android:padding="3dip"
-            android:text="21 James street, higland avenuehigland avenuehigland avenuehigland avenue" />
+            android:padding="3dip" />
     </TableRow>
 
     <TableRow>
@@ -54,21 +52,20 @@
         <TextView
             android:id="@+id/textViewDistrict"
             android:gravity="left"
-            android:padding="3dip"
-            android:text="Wicklow1Wicklow1Wicklow1" />
+            android:padding="3dip" />
     </TableRow>
 
     <TableRow android:background="@color/colorVeryLightGrey">
 
         <TextView
             android:layout_column="0"
+            android:padding="3dip"
             android:text="@string/label_county" />
 
         <TextView
             android:id="@+id/textViewCounty"
             android:gravity="left"
-            android:padding="3dip"
-            android:text="Wicklow" />
+            android:padding="3dip" />
     </TableRow>
 
     <TableRow>
@@ -81,8 +78,7 @@
         <TextView
             android:id="@+id/textViewCity"
             android:gravity="left"
-            android:padding="3dip"
-            android:text="Dublin" />
+            android:padding="3dip" />
     </TableRow>
 
     <TableRow android:background="@color/colorVeryLightGrey">
@@ -95,7 +91,6 @@
         <TextView
             android:id="@+id/textViewCountry"
             android:gravity="left"
-            android:padding="3dip"
-            android:text="Ireland" />
+            android:padding="3dip" />
     </TableRow>
 </merge>

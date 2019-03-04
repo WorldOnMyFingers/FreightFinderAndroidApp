@@ -2,78 +2,58 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:background="@color/colorAccent"
+    android:orientation="horizontal"
+    android:gravity="center_horizontal"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/countytextfrom"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:text="Akdeniz" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+    <TextView
+        android:id="@+id/slashfrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="2dp"
+        android:layout_marginLeft="2dp"
+        android:text="/" />
 
-            <TextView
-                android:id="@+id/citytextfrom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="Mersin" />
+    <TextView
+        android:id="@+id/citytextfrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mersin" />
 
-            <TextView
-                android:id="@+id/slashfrom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="/" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/ic_arrow_forward_black_24dp" />
 
-            <TextView
-                android:id="@+id/countytextfrom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="Akdeniz" />
+    <TextView
+        android:id="@+id/countytextto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sorgun" />
 
-        </LinearLayout>
+    <TextView
+        android:id="@+id/slashto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="2dp"
+        android:layout_marginLeft="2dp"
+        android:text="/" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@drawable/ic_arrow_downward_black_18dp" />
+    <TextView
+        android:id="@+id/citytextto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Yozgat" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/citytextto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="Yozgat" />
-
-            <TextView
-                android:id="@+id/slashto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="/" />
-
-            <TextView
-                android:id="@+id/countytextto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="Sorgun" />
-
-        </LinearLayout>
-
-    </LinearLayout>
 </LinearLayout>
