@@ -73,6 +73,9 @@
     <string name="label_country">Country</string>
     <string name="label_telephone">Telephone</string>
 
+    <string name="label_personal_details">Personal Details</string>
+    <string name="label_vehicle_details">Vehicle Details</string>
+
 
 
 

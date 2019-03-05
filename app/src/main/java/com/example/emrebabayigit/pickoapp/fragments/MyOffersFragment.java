@@ -81,19 +81,6 @@ public class MyOffersFragment extends Fragment {
         return view;
     }
 
-    private ArrayList<FreightOfferViewModel> mockOffer(){
-        ArrayList<FreightOfferViewModel> arrayList = new ArrayList<>();
-        arrayList.add(new FreightOfferViewModel(1,2, Calendar.getInstance().getTime(), true, true, null,
-                "Dublin", "London", "4500 KG", "1800 GBP", FreightTypeCode.values()[(Integer.parseInt("0"))]));
-        arrayList.add(new FreightOfferViewModel(1,2, Calendar.getInstance().getTime(), true, false, null,
-                "Cork", "London", "3500 KG", "1800 GBP", FreightTypeCode.values()[(Integer.parseInt("0"))]));
-        arrayList.add(new FreightOfferViewModel(1,2, Calendar.getInstance().getTime(), true, false, null,
-                "Wexford", "London", "9500 KG", "1800 GBP", FreightTypeCode.values()[(Integer.parseInt("0"))]));
-        arrayList.add(new FreightOfferViewModel(1,2, Calendar.getInstance().getTime(), true, false, null,
-                "Galway", "London", "1500 KG", "1800 GBP", FreightTypeCode.values()[(Integer.parseInt("0"))]));
-
-        return arrayList;
-    }
 
     private void loadOffers(){
         Log.d("ResponseUrl",url);

@@ -12,8 +12,7 @@
     <TextView
         android:id="@+id/countytextfrom"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Akdeniz" />
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/slashfrom"
@@ -26,21 +25,20 @@
     <TextView
         android:id="@+id/citytextfrom"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mersin" />
+        android:layout_height="wrap_content" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="-3dp"
         android:background="@drawable/ic_arrow_forward_black_24dp" />
 
     <TextView
         android:id="@+id/countytextto"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sorgun" />
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/slashto"
@@ -53,7 +51,6 @@
     <TextView
         android:id="@+id/citytextto"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Yozgat" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
