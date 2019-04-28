@@ -1,6 +1,7 @@
 package com.example.emrebabayigit.pickoapp.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.emrebabayigit.pickoapp.R;
+import com.example.emrebabayigit.pickoapp.activities.FreightDetails;
+import com.example.emrebabayigit.pickoapp.activities.PersonalDetails;
+import com.example.emrebabayigit.pickoapp.activities.VehicleDetails;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,14 +51,16 @@ public class MeFragment extends Fragment {
         personalDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getContext(), PersonalDetails.class);
+                getContext().startActivity(intent);
             }
         });
 
         vehicleDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getContext(), VehicleDetails.class);
+                getContext().startActivity(intent);
             }
         });
         return view;

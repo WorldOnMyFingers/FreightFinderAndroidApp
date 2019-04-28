@@ -15,6 +15,8 @@ public class AddressViewModel implements Serializable {
 
     public String AddressLine;
 
+    public String Phone;
+
     public String City;
 
     public String Country;
@@ -30,6 +32,16 @@ public class AddressViewModel implements Serializable {
     public String GetDistrict()
     {
         return District;
+    }
+
+    public void SetPhone(String phone)
+    {
+        Phone = phone;
+    }
+
+    public String GetPhone()
+    {
+        return Phone;
     }
 
     public void SetAddressLine(String addressLine)

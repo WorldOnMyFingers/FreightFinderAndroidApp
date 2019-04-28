@@ -20,6 +20,7 @@ public class AddressParcer {
     private static final String TAG_COUNTRY = "Country";
     private static final String TAG_CITY = "City";
     private static final String TAG_COUNTY = "County";
+    private static final String TAG_PHONE = "Phone";
 
     private static final String TAG_CITYNAME = "City";
     private static final String TAG_COUNTYNAME = "County";
@@ -52,6 +53,10 @@ public class AddressParcer {
 
                 if (Utility.contains(addressObject, TAG_ADDRESSLINE)) {
                     address.SetAddressLine(addressObject.getString(TAG_ADDRESSLINE));
+                }
+
+                if (Utility.contains(addressObject, TAG_PHONE)) {
+                    address.SetPhone(addressObject.getString(TAG_PHONE));
                 }
 
 

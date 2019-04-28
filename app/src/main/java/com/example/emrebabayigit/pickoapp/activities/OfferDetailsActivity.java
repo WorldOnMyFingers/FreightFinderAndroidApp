@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +32,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
 
     TextView cityFrom, countyFrom, cityTo, countyTo, freightType, weight, volume, loadingDate, dateCreated, description, deliverByDate;
     TextView offerDate, status, dateAccepted;
-    TextView addressline, district, county, city, country;
+    TextView addressline, phone, district, county, city, country;
     String baseUrl, url;
     RequestQueue requestQueue;
     OfferDetailsViewModel offerDetails;
@@ -68,7 +70,13 @@ public class OfferDetailsActivity extends AppCompatActivity {
         status = (TextView) findViewById(R.id.textViewStatus);
         dateAccepted = (TextView) findViewById(R.id.textViewDateAccepted);
 
+        TableLayout tl = (TableLayout) findViewById(R.id.offerDetailsTableLayout);
+        LayoutInflater layoutInflater = (LayoutInflater)
+                this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+
         addressline = (TextView) findViewById(R.id.textViewAddressLine);
+        phone = (TextView) findViewById(R.id.textViewTelephone);
         district = (TextView) findViewById(R.id.textViewDistrict);
         county = (TextView) findViewById(R.id.textViewCounty);
         city = (TextView) findViewById(R.id.textViewCity);
@@ -98,17 +106,18 @@ public class OfferDetailsActivity extends AppCompatActivity {
         }
         if(offerDetails.Freight.IsTaken == true && offerDetails.IsAccepted == true){
             status.setText(getResources().getText(R.string.freight_offer_status_accepted));
+            phone.setText(offerDetails.Freight.Address.Phone);
+            addressline.setText(offerDetails.Freight.Address.AddressLine);
+            district.setText(offerDetails.Freight.Address.District);
+            county.setText(offerDetails.Freight.Address.County);
+            city.setText(offerDetails.Freight.Address.City);
+            country.setText(offerDetails.Freight.Address.Country);
         }else if(offerDetails.Freight.IsTaken == true && offerDetails.IsAccepted == false) {
             status.setText(getResources().getText(R.string.freight_offer_status_rejected));
         }else if(offerDetails.Freight.IsTaken == false && offerDetails.IsAccepted == false){
             status.setText(getResources().getText(R.string.freight_offer_status_pending));
         }
 
-        addressline.setText(offerDetails.Freight.Address.AddressLine);
-        district.setText(offerDetails.Freight.Address.District);
-        county.setText(offerDetails.Freight.Address.County);
-        city.setText(offerDetails.Freight.Address.City);
-        country.setText(offerDetails.Freight.Address.Country);
 
     }
 
