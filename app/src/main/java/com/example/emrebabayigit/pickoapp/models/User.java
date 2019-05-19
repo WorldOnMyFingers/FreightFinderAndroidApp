@@ -11,7 +11,7 @@ import com.example.emrebabayigit.pickoapp.enums.UserTypeCodes;
 
 public class User implements Serializable {
 
-    public int Id;
+    public String Id;
 
     public long NationalIdentity;
 
@@ -29,7 +29,7 @@ public class User implements Serializable {
 
     public Date DateOfBirth;
 
-    public String PicturePath;
+    public String[] ImagePaths;
 
     public Company Company;
 
@@ -40,11 +40,13 @@ public class User implements Serializable {
     public boolean IsActive;
 
     //Setters and Getters
-    public void SetId(int id){
+    public void SetId(String id){
         Id = id;
     }
 
-    public int GetId(){
+
+
+    public String GetId(){
         return Id;
     }
     public void SetUserName(String userName){
@@ -101,6 +103,24 @@ public class User implements Serializable {
 
     public Date GetDateOfBirth(){
         return DateOfBirth;
+    }
+
+    public void SetNationalIdentity(long nationalIdentity){
+        NationalIdentity = nationalIdentity;
+    }
+
+    public long GetNationalIdentity(){
+        return NationalIdentity;
+    }
+
+    public void SetImagePaths(String[] paths)
+    {
+        ImagePaths = paths;
+    }
+
+    public String[] GetImagePaths()
+    {
+        return ImagePaths;
     }
 
 

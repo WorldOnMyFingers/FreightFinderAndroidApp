@@ -1,0 +1,93 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TableLayout
+        android:id="@+id/offerDetailsTableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0,1"
+        android:shrinkColumns="*"
+        android:layout_margin="10dp">
+    <TableRow>
+
+        <TextView
+            android:id="@+id/personDetailsLabel"
+            android:layout_column="0"
+            android:padding="3dip"
+            android:text="@string/label_personal_details"
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"/>
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_column="0"
+            android:padding="3dip"
+            android:text="@string/label_fullname" />
+
+        <TextView
+            android:id="@+id/textViewFullName"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:background="@color/colorVeryLightGrey">
+
+        <TextView
+            android:layout_column="0"
+            android:padding="3dip"
+            android:text="@string/label_email" />
+
+        <TextView
+            android:id="@+id/textViewEmail"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:maxWidth="20dp"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_column="0"
+            android:padding="3dip"
+            android:text="@string/label_phoneNumber" />
+
+        <TextView
+            android:id="@+id/textViewPhoneNumber"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow android:background="@color/colorVeryLightGrey">
+
+        <TextView
+            android:layout_column="0"
+            android:padding="3dip"
+            android:text="@string/label_address" />
+
+        <TextView
+            android:id="@+id/textViewAddress"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_column="0"
+            android:padding="3dip"
+            android:text="@string/label_dateofbirth" />
+
+        <TextView
+            android:id="@+id/textViewBirthday"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    </TableLayout>
+
+</merge>

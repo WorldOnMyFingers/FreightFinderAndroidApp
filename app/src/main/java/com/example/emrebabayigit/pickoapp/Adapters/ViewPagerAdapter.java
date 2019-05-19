@@ -7,7 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
+
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class ViewPagerAdapter extends PagerAdapter {
     private Context context;
@@ -32,7 +40,19 @@ public class ViewPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         ImageView imageView = new ImageView(context);
-        Picasso.get()
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(Chain chain) throws IOException {
+                        Request newRequest = chain.request().newBuilder()
+                                //.addHeader("X-TOKEN", "VAL")
+                                .build();
+                        return chain.proceed(newRequest);
+                    }
+                })
+                .build();
+        Picasso pica = new Picasso.Builder(this.context).downloader(new OkHttp3Downloader(client)).build();
+        pica
                 .load(imageUrls[position])
                 .fit()
                 .centerCrop()

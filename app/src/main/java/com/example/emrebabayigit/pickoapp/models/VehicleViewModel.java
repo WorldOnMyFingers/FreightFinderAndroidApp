@@ -36,12 +36,54 @@ public class VehicleViewModel implements Serializable {
 
     public String Model;
 
+    public String[] ImagePaths;
+
     public String Company;
 
     public String Driver;
 
 
     // Setters and Getters
+    public void SetImagePaths(String[] paths)
+    {
+        ImagePaths = paths;
+    }
+
+    public String[] GetImagePaths()
+    {
+        return ImagePaths;
+    }
+
+    public void SetVehicleIdentificationNumber(String vehicleIdentificationNumber)
+    {
+        VehicleIdentificationNumber = vehicleIdentificationNumber;
+    }
+
+    public String GetVehicleIdentificationNumber()
+    {
+        return VehicleIdentificationNumber;
+    }
+
+    public void SetCompany(String company)
+    {
+        Company = company;
+    }
+
+    public String GetCompany()
+    {
+        return Company;
+    }
+
+    public void SetVehicleType(TrailerTypeCode vehicleType)
+    {
+        VehicleType = vehicleType;
+    }
+
+    public TrailerTypeCode GetVehicleType()
+    {
+        return VehicleType;
+    }
+
     public void SetBrand(String brand)
     {
         Brand = brand;

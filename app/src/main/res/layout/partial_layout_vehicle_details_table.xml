@@ -1,0 +1,132 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TableLayout
+        android:id="@+id/vehicleDetailsTableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0,1"
+        android:shrinkColumns="*"
+        android:layout_margin="10dp">
+        <TableRow>
+
+            <TextView
+                android:id="@+id/vehicleDetailsLabel"
+                android:layout_column="0"
+                android:padding="3dip"
+                android:text="@string/label_vehicle_details"
+                android:textStyle="bold"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"/>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_column="0"
+                android:padding="3dip"
+                android:text="@string/label_vehicle_plate_number" />
+
+            <TextView
+                android:id="@+id/textViewPlateNumber"
+                android:gravity="left"
+                android:padding="3dip" />
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:background="@color/colorVeryLightGrey">
+
+            <TextView
+                android:layout_column="0"
+                android:padding="3dip"
+                android:text="@string/label_vehicle_company" />
+
+            <TextView
+                android:id="@+id/textViewVehicleCompany"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:maxWidth="20dp"
+                android:padding="3dip" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_column="0"
+                android:padding="3dip"
+                android:text="@string/label_vehicle_brand" />
+
+            <TextView
+                android:id="@+id/textViewVehicleBrand"
+                android:gravity="left"
+                android:padding="3dip" />
+        </TableRow>
+
+        <TableRow android:background="@color/colorVeryLightGrey">
+
+            <TextView
+                android:layout_column="0"
+                android:padding="3dip"
+                android:text="@string/label_vehicle_model" />
+
+            <TextView
+                android:id="@+id/textViewModel"
+                android:gravity="left"
+                android:padding="3dip" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_column="0"
+                android:padding="3dip"
+                android:text="@string/label_vehicle_color" />
+
+            <TextView
+                android:id="@+id/textViewVehicleColor"
+                android:gravity="left"
+                android:padding="3dip" />
+        </TableRow>
+
+        <TableRow android:background="@color/colorVeryLightGrey">
+
+            <TextView
+                android:layout_column="0"
+                android:padding="3dip"
+                android:text="@string/label_vehicle_engine_number" />
+
+            <TextView
+                android:id="@+id/textViewVehicleEngineNumber"
+                android:gravity="left"
+                android:padding="3dip" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_column="0"
+                android:padding="3dip"
+                android:text="@string/label_vehicle_identification_number" />
+
+            <TextView
+                android:id="@+id/textViewVehicleIdentificationNumber"
+                android:gravity="left"
+                android:padding="3dip" />
+        </TableRow>
+
+        <TableRow android:background="@color/colorVeryLightGrey">
+
+            <TextView
+                android:layout_column="0"
+                android:padding="3dip"
+                android:text="@string/label_vehicle_isloaded" />
+
+            <TextView
+                android:id="@+id/textViewIsLoaded"
+                android:gravity="left"
+                android:padding="3dip" />
+        </TableRow>
+
+    </TableLayout>
+
+</merge>

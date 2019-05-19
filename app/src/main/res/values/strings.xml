@@ -73,11 +73,35 @@
     <string name="label_country">Country</string>
     <string name="label_telephone">Telephone</string>
 
-    <string name="label_personal_details">Personal Details</string>
+
     <string name="label_vehicle_details">Vehicle Details</string>
     <string name="title_activity_vehicle_settings">VehicleSettings</string>
     <string name="title_activity_vehicle_details">VehicleDetails</string>
     <string name="title_activity_personal_details">PersonalDetails</string>
+
+    <string name="label_personal_details">Personal Details</string>
+    <string name="label_fullname">Full Name</string>
+    <string name="label_email">Email</string>
+    <string name="label_phoneNumber">Phone Number</string>
+    <string name="label_dateofbirth">Date of Birth</string>
+    <string name="label_address">Address</string>
+    <string name="label_address_details">Address Details</string>
+
+    <string name="label_vehicle_plate_number">Plate Number</string>
+    <string name="label_vehicle_type">Vehicle Type</string>
+    <string name="label_vehicle_capacity">Vehicle Capacity</string>
+    <string name="label_vehicle_identification_number">Identification Number</string>
+    <string name="label_vehicle_engine_number">Engine Number</string>
+    <string name="label_vehicle_brand">Brand</string>
+    <string name="label_vehicle_company">Owner Company</string>
+    <string name="label_vehicle_model">Model</string>
+    <string name="label_vehicle_isloaded">Loaded</string>
+    <string name="label_vehicle_color">Color</string>
+
+
+    <string name="label_name">Name</string>
+    <string name="label_surname">Surname</string>
+
 
 
 </resources>
